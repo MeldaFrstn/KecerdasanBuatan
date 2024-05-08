@@ -25,3 +25,5 @@ gaji_B = np.sum(data_gaji[1:2,1], axis =0)
 
 print("gaji_A :", gaji_A)
 print("gaji_B :", gaji_B)
+
+!pip install -U scikit_fuzzy
