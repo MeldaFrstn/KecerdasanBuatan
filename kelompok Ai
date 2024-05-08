@@ -120,3 +120,53 @@ mhsA_nk_tinggi = nk_11
 print("Nilai Kelayakan Mhs A")
 print("NK rendah : ", mhsA_nk_rendah)
 print("NK tinggi : ", mhsA_nk_tinggi)
+
+# Untuk Plot Arsir, pakai np.fmin
+mhsA_nk_rendah = np.fmin (mhsA_nk_rendah, nk_rendah)
+mhsA_nk_tinggi = np.fmin (mhsA_nk_tinggi, nk_tinggi)
+
+# Titik Awal Arsir 
+nk0 = np.zeros_like (x_nk)
+nkr = np.zeros_like (nk_rendah)
+nkt = np.zeros_like (nk_tinggi)
+
+# Visualize This
+fig, (ax0, ax1, ax2) = plt.subplots (nrows=3, figsize=(8,9))
+
+#x_nk_rendah = np.arrange (0, 80 1)
+ax0.fill_between(x_nk, nkr, mhsA_nk_rendah, facecolor='b',alpha=0.7)
+ax0.plot(x_nk, nk_rendah, 'b' , linewidth=1.5, linestyle ='--' , label = 'Rendah')
+ax0.set_title('Nilai Kelayakan')
+ax0.legend()
+
+ax1.fill_between(x_nk, nkt, mhsA_nk_tinggi, facecolor='g', alpha=0.7)
+ax1.plot(x_nk, nk_tinggi, 'g' , linewidth=1.5, linestyle ='--', label = 'Tinggi')
+ax1.set_title('Nilai Kelayakan')
+ax1.legend()
+
+ax2.fill_between(x_nk, nk0, mhsA_nk_rendah, facecolor='b', alpha=0.7)
+ax2.plot(x_nk, nk_rendah, 'b' , linewidth=1.5, linestyle ='--', label = 'Rendah')
+ax2.fill_between(x_nk, nk0, mhsA_nk_tinggi, facecolor='g', alpha=0.7)
+ax2.plot(x_nk, nk_tinggi, 'g' , linewidth=1.5, linestyle ='--' , label = 'Tinggi')
+ax2.set_title('Nilai Kelayakan')
+ax2.legend()
+
+# Turn Off Top/Right axes 
+for ax in (ax0, ax1, ax2) :
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    ax.get_xaxis().tick_bottom()
+    ax.get_yaxis().tick_left ()
+    
+plt.tight_layout()
+
+nk_5 = np.fmin (ipk_mhsB[1], gaji_mhsB[0])
+nk_6 = np.fmin (ipk_mhsB[1], gaji_mhsB[1])
+nk_9 = np.fmin (ipk_mhsB[2], gaji_mhsB[0])
+nk_10 = np.fmin (ipk_mhsB[2], gaji_mhsB[1])
+mhsB_nk_tinggi = np.fmax (nk_5, np.fmax(nk_9, nk_10))
+mhsB_nk_rendah = nk_6
+
+print("Nilai Kelayakan Mhs B")
+print("NK rendah : ", mhsB_nk_rendah)
+print("NK tinggi : ", mhsB_nk_tinggi)
