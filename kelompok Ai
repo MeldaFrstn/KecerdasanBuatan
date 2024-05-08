@@ -1,1 +1,5 @@
+import numpy as np
+import pandas as pd
 
+data_mahasiswa = pd.read_csv("dataMahasiswa.csv")
+data_mahasiswa
