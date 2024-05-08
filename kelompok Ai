@@ -102,3 +102,21 @@ ipk_mhsB = fungsiKeanggotaan_IPK(ipk_B)
 
 print("IPK Mahasiswa A : ", ipk_mhsA)
 print("IPK Mahasiswa B : ", ipk_mhsB)
+
+# Menghitung Derajat Keanggotaan Gaji
+gaji_mhsA = fungsiKeanggotaan_Gaji(gaji_A)
+gaji_mhsB = fungsiKeanggotaan_Gaji(gaji_B)
+
+print("Gaji Mahasiswa A : ", gaji_mhsA)
+print("Gaji Mahasiswa B : ", gaji_mhsB)
+
+nk_7 = np.fmin (ipk_mhsA[1], gaji_mhsA[2])
+nk_8 = np.fmin (ipk_mhsA[1], gaji_mhsA[3])
+nk_11 = np.fmin (ipk_mhsA[2], gaji_mhsA[2])
+nk_12 = np.fmin (ipk_mhsA[2], gaji_mhsA[3])
+mhsA_nk_rendah = np.fmax (nk_7, np.fmax(nk_8, nk_12))
+mhsA_nk_tinggi = nk_11
+
+print("Nilai Kelayakan Mhs A")
+print("NK rendah : ", mhsA_nk_rendah)
+print("NK tinggi : ", mhsA_nk_tinggi)
